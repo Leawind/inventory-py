@@ -1,0 +1,65 @@
+
+[build-system]
+requires = ["hatchling>=1.16"]
+build-backend = "hatchling.build"
+
+[project]
+name = "leawind-inventory"
+dynamic = ["version"]
+description = 'General utilities'
+readme = "README.md"
+requires-python = ">=3.8"
+license = "MIT"
+keywords = []
+authors = [{ name = "Leawind", email = "leawind@yeah.net" }]
+classifiers = [
+	"Development Status :: 4 - Beta",
+	"Programming Language :: Python",
+	"Programming Language :: Python :: 3.8",
+	"Programming Language :: Python :: 3.9",
+	"Programming Language :: Python :: 3.10",
+	"Programming Language :: Python :: 3.11",
+	"Programming Language :: Python :: 3.12",
+	"Programming Language :: Python :: Implementation :: CPython",
+	"Programming Language :: Python :: Implementation :: PyPy",
+]
+dependencies = []
+
+[project.urls]
+Documentation = "https://github.com/Leawind/inventory-py#readme"
+Issues = "https://github.com/Leawind/inventory-py/issues"
+Source = "https://github.com/Leawind/inventory-py"
+
+[tool.hatch.version]
+path = "src/leawind_inventory/__about__.py"
+
+[tool.hatch.build.targets.sdist]
+include = ["src/leawind_inventory"]
+
+[tool.hatch.build.targets.wheel]
+include = ["src/leawind_inventory"]
+
+[tool.hatch.build.targets.wheel.sources]
+"src/leawind_inventory" = "leawind_inventory"
+
+[tool.hatch.envs.dev]
+dependencies = ["black>=24.0"]
+extra-dependencies = ["mypy>=1.0.0"]
+
+[tool.hatch.envs.dev.scripts]
+type-check = "mypy src/leawind_inventory tests"
+format = "black src tests"
+format-check = "black --check src tests"
+
+[tool.coverage.run]
+source_pkgs = ["leawind_inventory", "tests"]
+branch = true
+parallel = true
+omit = ["src/leawind_inventory/__about__.py"]
+
+[tool.coverage.paths]
+leawind_inventory = ["src/leawind_inventory"]
+tests = ["tests", "*/leawind-inventory/tests"]
+
+[tool.coverage.report]
+exclude_lines = ["no cov", "if __name__ == .__main__.:", "if TYPE_CHECKING:"]
