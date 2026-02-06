@@ -1,0 +1,46 @@
+################################
+# Python bytecode / cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# hatch environments
+.hatch/
+
+################################
+# Build / packaging
+build/
+dist/
+
+################################
+# Test / coverage
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+coverage.xml
+
+################################
+# Type checking
+.mypy_cache/
+
+################################
+# IDE / editor
+.vscode/
+.idea/
+*.iml
+
+################################
+# OS
+.DS_Store
+Thumbs.db
+
+################################
+# Logs / temp files
+*.log
+*.tmp
+
+################################
+# AI Tools
+.trae
+.lingma
