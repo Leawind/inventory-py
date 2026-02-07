@@ -1,4 +1,4 @@
-import os
+import os, random, string
 from typing import Mapping, TypeVar, overload
 
 T = TypeVar("T")
@@ -30,3 +30,27 @@ def by_platform(value: Mapping[str, T], default: T | None = None) -> T | None:
         If no fallback is provided, ``None`` may be returned.
     """
     return value.get(os.name, default)
+
+
+def random_string(
+    length: int = 8,
+    chars: str = string.ascii_lowercase + string.digits,
+) -> str:
+    """
+    Generate a random string of fixed length.
+
+    Args:
+        length:
+            The length of the string to generate.
+            Must be greater than 0.
+
+        chars:
+            The characters to use when generating the string.
+            Defaults to ``string.ascii_lowercase + string.digits``.
+            Must be non-empty.
+
+    Example:
+        >>> random_string()
+        '5c5f7c0d'
+    """
+    return "".join(random.choices(chars, k=length))

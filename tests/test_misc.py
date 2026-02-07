@@ -14,3 +14,9 @@ def test_by_platform():
     assert misc.by_platform({}) is None
 
     assert misc.by_platform({}, "default") == "default"
+
+
+def test_random_string():
+    assert misc.random_string()
+    assert misc.random_string(length=10)
+    assert misc.random_string(length=10, chars="abc")
