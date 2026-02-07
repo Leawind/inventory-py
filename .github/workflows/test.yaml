@@ -1,0 +1,34 @@
+name: Test
+
+on:
+    push:
+
+permissions:
+    contents: read
+
+jobs:
+    test:
+        name: Test
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Setup repo
+              uses: actions/checkout@v6
+              with:
+                  persist-credentials: false
+            - name: Set up Python
+              uses: actions/setup-python@v6
+              with:
+                  python-version: "3.10.x"
+
+            - name: Install hatch
+              run: python3 -m pip install hatch
+
+            - name: Run tests
+              run: python3 -m hatch test
+
+            - name: Check type
+              run: python3 -m hatch run dev:type-check
+
+            - name: Check Format
+              run: python3 -m hatch run dev:format-check
